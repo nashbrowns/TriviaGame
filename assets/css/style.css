@@ -1,0 +1,9 @@
+body{
+    background-image: url('../images/woodworking.jpg');
+    background-repeat:no-repeat;
+    background-size: 2100px;
+    background-position: center;
+}
+#cont-body{
+    background-color: rgba(250, 171, 171, 0.3);
+}

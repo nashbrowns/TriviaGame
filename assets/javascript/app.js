@@ -56,7 +56,6 @@ function Submit(){
     $( ".active" ).each(function( index ) {
         console.log( index + ": " + $( this ).text() ); //logs original text from elements with class "active"
         str = $( this ).text(); //stores text from "active in variable str"
-        /* str = str.replace(/\s+/g, ''); */ 
         str = str.trim();//eliminates whitespace and stores back in str
 
         chosen = str; //sets chosen as str;
