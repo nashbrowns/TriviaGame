@@ -1,40 +1,53 @@
 //Global variables
 var answer;
 var chosen;
+var qNum = 0;
+var Correct = 0;
+var Incorrect = 0;
 
 //Question Object
-var Question = {
+var Question = [
      
-  Q1: {
+  {
     Text: 'This is Question 1', 
-    Answer: 'C', A: 'False', B: 'False', C: 'True', D: 'False'
+    Answer: 'C', 
+    A: 'False', B: 'False', C: 'True', D: 'False'
   },
-  Q2: {
+  {
     Text: 'This is Question 2', 
-    Answer: 'C', A: 'False', B: 'False', C: 'True', D: 'False'
+    Answer: 'C', 
+    A: 'False', B: 'False', C: 'True', D: 'False'
   },
-  Q3: {
+  {
     Text: 'This is Question 3', 
-    Answer: 'C', A: 'False', B: 'False', C: 'True', D: 'False'
+    Answer: 'C', 
+    A: 'False', B: 'False', C: 'True', D: 'False'
   },
-  Q4: {
+  {
     Text: 'This is Question 4', 
-    Answer: 'C', A: 'False', B: 'False', C: 'True', D: 'False'
+    Answer: 'C', 
+    A: 'False', B: 'False', C: 'True', D: 'False'
   },
-  Q5: {
+  {
     Text: 'This is Question 5', 
-    Answer: 'C', A: 'False', B: 'False', C: 'True', D: 'False'
-  }
+    Answer: 'C', 
+    A: 'False', B: 'False', C: 'True', D: 'False'
+  },
 
-};
+];
 
 function CheckAnswer(){
-  if(chosen[0]==answer[0]){
+  if(chosen==answer){
+    Correct++;
     alert('Correct');
   }
   else{
+    Incorrect++;
     alert('Incorect');
   }
+
+  console.log("Correct = "+Correct);
+  console.log("Incorrect = "+Incorrect);
 }
 
 function Submit(){
@@ -51,9 +64,14 @@ function Submit(){
 
     console.log(chosen);
 
+    //Checking if answer is correct
     CheckAnswer();
 
-    genQuestion(Question.Q2);
+    //Checks if next answer exists
+    if( qNum < (Question.length-1) ){
+      qNum++; //iterating to next question
+      genQuestion(Question[qNum]); //calling next question
+    }
 
 }
 
@@ -83,7 +101,7 @@ function genButtons(){
   $('.btn-secondary').append(Btn);
 
   //creating and appending submit button to div with id = Sub
-  var Submit = $('<button>').attr('class', 'btn btn-primary').attr('onclick','Submit()').text('Submit');
+  var Submit = $('<button>').attr('class', 'btn btn-primary removeable').attr('onclick','Submit()').text('Submit');
   $('#Sub').append(Submit);
 }
 
@@ -107,12 +125,14 @@ function genQuestion(Q_Prop){
 
   answer = Q_Prop.Answer;
   chosen = ''; //initializes chosen as null
+
+  genButtons(); //creating Buttons
   console.log(Q_Prop.Answer);
 
 }
 
 //Begin Code Execution
 $(document).ready(function() {
-  genQuestion(Question.Q1);
-  genButtons();
+  genQuestion(Question[qNum]);
+  
 });
