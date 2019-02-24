@@ -14,31 +14,31 @@ var Question = [
   {
     Text: 'Eye protection must be worn: ', 
     Answer: 'B',
-    qImage: '../images/SafetyGlasses.jpg', 
+    qImage: 'assets/images/SafetyGlasses.jpg', 
     A: 'Only when working on a machine', B: 'At all times working in the woodshop', C: 'When a teacher reminds me', D: 'Lol who needs protection'
   },
   {
     Text: 'Proper footwear in the woodshop is:', 
     Answer: 'C',
-    qImage: '../images/HurtToe.jpg', 
+    qImage: 'assets/images/HurtToe.jpg', 
     A: 'Sandals', B: 'Moon Shoes', C: 'Close toed shoes', D: 'I Don\'t need shoes'
   },
   {
     Text: 'People allowed to work in the shop are: ', 
     Answer: 'A',
-    qImage: '../images/KidTools.jpg', 
+    qImage: 'assets/images/KidTools.jpg', 
     A: 'People who have taken the appropriate safety class', B: 'People who feel confident enough', C: 'Nobody', D: 'Infants'
   },
   {
     Text: 'The first priority when working on a machine is: ', 
     Answer: 'D',
-    qImage: '../images/CoolDude.jpg', 
+    qImage: 'assets/images/CoolDude.jpg', 
     A: 'That I don\'t make any mistakes', B: 'That I watch other people around me', C: 'That I look cool', D: 'That I am always thinking about safety'
   },
   {
     Text: 'Before turning on one of the machines', 
     Answer: 'B',
-    qImage: '../images/TableSaw.jpg', 
+    qImage: 'assets/images/TableSaw.jpg', 
     A: 'Verbally announce you are going to use the machine', B: 'Turn on the dust collection system or make sure it\'s on', C: 'Use the restroom', D: 'Make sure you look cool'
   },
 
@@ -126,7 +126,7 @@ function genQuestion(Q_Prop){
   var qElem = $('<div>').attr('class','removeable').html(Q_Prop.Text);
   $('#Question').prepend(qElem);
 
-  var ImageDiv = $('<img>').attr('src',Q_Prop.qImage).attr('class','removeable');
+  var ImageDiv = $('<img>').attr('src',Q_Prop.qImage).attr('class','removeable').attr('id','ImgSize');
   $('#QuesImage').prepend(ImageDiv);
 
   var ChoiceA = $('<div>').attr('class', 'removeable').html('A: '+Q_Prop.A);
@@ -152,7 +152,7 @@ function start(){
   qNum = 0;
 
   SecDisp = $('<div>').html(Sec).attr('id','Count');
-  $('#Timer').html('20');
+  $('#Timer').html(timerRst);
 
   $('.removeable').remove();
   var Start = $('<button>').attr('class', 'btn btn-primary removeable').attr('onclick','genQuestion(Question[0])').text('Start');

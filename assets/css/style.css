@@ -11,7 +11,16 @@ body{
 .align{
     align-content: center;
 }
-#QuesImage{
-    height: 240px;
-    width:300px;
+#ImgSize{
+    height:300px;
+    width:400px;
+}
+.card{
+    margin-bottom: 30px;
+}
+.card-text{
+    text-align: left;
+}
+.btn{
+    margin: 10px 20px 10px 20px;
 }
