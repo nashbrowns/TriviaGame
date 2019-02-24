@@ -1,9 +1,17 @@
 body{
-    background-image: url('../images/woodworking.jpg');
+    background-image: url('../images/BlurWood.jpg');
     background-repeat:no-repeat;
     background-size: 2100px;
     background-position: center;
 }
-#cont-body{
-    background-color: rgba(250, 171, 171, 0.3);
+.opacity{
+    background-color: rgba(255, 240, 240, 0.3);
+    text-align: center;
+}
+.align{
+    align-content: center;
+}
+#QuesImage{
+    height: 240px;
+    width:300px;
 }

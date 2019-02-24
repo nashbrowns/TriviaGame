@@ -4,34 +4,42 @@ var chosen;
 var qNum = 0;
 var Correct = 0;
 var Incorrect = 0;
+var timerRst = 20;
+var Sec = timerRst;
+var intervalId;
 
 //Question Object
 var Question = [
      
   {
-    Text: 'This is Question 1', 
-    Answer: 'C', 
-    A: 'False', B: 'False', C: 'True', D: 'False'
+    Text: 'Eye protection must be worn: ', 
+    Answer: 'B',
+    qImage: '../images/SafetyGlasses.jpg', 
+    A: 'Only when working on a machine', B: 'At all times working in the woodshop', C: 'When a teacher reminds me', D: 'Lol who needs protection'
   },
   {
-    Text: 'This is Question 2', 
-    Answer: 'C', 
-    A: 'False', B: 'False', C: 'True', D: 'False'
+    Text: 'Proper footwear in the woodshop is:', 
+    Answer: 'C',
+    qImage: '../images/HurtToe.jpg', 
+    A: 'Sandals', B: 'Moon Shoes', C: 'Close toed shoes', D: 'I Don\'t need shoes'
   },
   {
-    Text: 'This is Question 3', 
-    Answer: 'C', 
-    A: 'False', B: 'False', C: 'True', D: 'False'
+    Text: 'People allowed to work in the shop are: ', 
+    Answer: 'A',
+    qImage: '../images/KidTools.jpg', 
+    A: 'People who have taken the appropriate safety class', B: 'People who feel confident enough', C: 'Nobody', D: 'Infants'
   },
   {
-    Text: 'This is Question 4', 
-    Answer: 'C', 
-    A: 'False', B: 'False', C: 'True', D: 'False'
+    Text: 'The first priority when working on a machine is: ', 
+    Answer: 'D',
+    qImage: '../images/CoolDude.jpg', 
+    A: 'That I don\'t make any mistakes', B: 'That I watch other people around me', C: 'That I look cool', D: 'That I am always thinking about safety'
   },
   {
-    Text: 'This is Question 5', 
-    Answer: 'C', 
-    A: 'False', B: 'False', C: 'True', D: 'False'
+    Text: 'Before turning on one of the machines', 
+    Answer: 'B',
+    qImage: '../images/TableSaw.jpg', 
+    A: 'Verbally announce you are going to use the machine', B: 'Turn on the dust collection system or make sure it\'s on', C: 'Use the restroom', D: 'Make sure you look cool'
   },
 
 ];
@@ -39,19 +47,20 @@ var Question = [
 function CheckAnswer(){
   if(chosen==answer){
     Correct++;
-    alert('Correct');
   }
   else{
     Incorrect++;
-    alert('Incorect');
   }
 
   console.log("Correct = "+Correct);
   console.log("Incorrect = "+Incorrect);
+
 }
 
 function Submit(){
-
+/*     Sec = timerRst;
+    clearInterval(intervalId);
+    intervalId = setInterval(Countdown, 1000); */
     //Takes all text from buttons with class "active" eliminates white space, and puts it in chosen array
     $( ".active" ).each(function( index ) {
         console.log( index + ": " + $( this ).text() ); //logs original text from elements with class "active"
@@ -71,12 +80,14 @@ function Submit(){
       qNum++; //iterating to next question
       genQuestion(Question[qNum]); //calling next question
     }
+    else{
+      dispScore();
+    }
+    
 
 }
 
 function genButtons(){
-
-
 
   //Creates div for bootstrap radio button group
   var BtnGroup = $('<div>').attr('class','btn-group btn-group-toggle removeable').attr('data-toggle','buttons').attr('id','Answers');
@@ -106,11 +117,17 @@ function genButtons(){
 
 //Generates div for question and appends it
 function genQuestion(Q_Prop){
+  Sec = timerRst;
+  clearInterval(intervalId);
+  intervalId = setInterval(Countdown, 1000);
 
   $('.removeable').remove(); //used to clear page for new question
 
   var qElem = $('<div>').attr('class','removeable').html(Q_Prop.Text);
   $('#Question').prepend(qElem);
+
+  var ImageDiv = $('<img>').attr('src',Q_Prop.qImage).attr('class','removeable');
+  $('#QuesImage').prepend(ImageDiv);
 
   var ChoiceA = $('<div>').attr('class', 'removeable').html('A: '+Q_Prop.A);
   var ChoiceB = $('<div>').attr('class', 'removeable').html('B: '+Q_Prop.B);
@@ -129,9 +146,59 @@ function genQuestion(Q_Prop){
   console.log(Q_Prop.Answer);
 
 }
+function start(){
+  Correct = 0;
+  Incorrect = 0;
+  qNum = 0;
+
+  SecDisp = $('<div>').html(Sec).attr('id','Count');
+  $('#Timer').html('20');
+
+  $('.removeable').remove();
+  var Start = $('<button>').attr('class', 'btn btn-primary removeable').attr('onclick','genQuestion(Question[0])').text('Start');
+  $('#Sub').append(Start);
+}
+function dispScore(){
+  clearInterval(intervalId);
+  $('#Timer').html('');
+  $('.removeable').remove();
+  var Percent;
+  var PercentDiv;
+
+
+  if(Correct === 0){
+    Percent = 0;
+  }
+  else{
+    Percent = (Correct/(Correct+Incorrect))*100;
+  }
+  
+  PercentDiv = $('<div>').html('You scored '+Percent+'&#37;').attr('class','removeable');
+
+  $('#Question').append(PercentDiv);
+
+  var Start = $('<button>').attr('class', 'btn btn-primary removeable').attr('onclick','start()').text('Retry');
+  $('#Sub').append(Start);
+
+}
 
 //Begin Code Execution
 $(document).ready(function() {
-  genQuestion(Question[qNum]);
-  
+  start();
 });
+
+//Timer Functions
+function Countdown() {
+
+    var SecDisp = $('<div>').html(Sec).attr('id','Count');
+    $('#Timer').html(SecDisp);
+
+    if(Sec === 0){
+      Sec = 10;
+      Submit();
+    }
+
+    Sec--;
+  
+
+}

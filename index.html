@@ -26,40 +26,59 @@
 <body>
 
     <div class = "container">
+    
+      <div class="jumbotron jumbotron-fluid opacity">
+        <div class="container">
+          <h1 class="display-4">Woodshop Safety Quiz</h1>
+          <p class="lead">Test your woodshop safety knowledge</p>
+        </div>
+      </div>
 
-      
-        <div class="card" style="width: 18rem;" id="cont-body">
-            <div class="card-body">
+      <div class = 'row'>
+        <div class = 'col-md-2'></div>
+        <div class = 'col-md-6'>
+          <div class="card opacity" style="width: 35rem;">
+              <div class="card-body">
+                <div id = QuesImage></div>
 
-              <img src="..." class="card-img-top" alt="...">
+<!--                 <img src="assets/images/HailSafety.png" id = "QuesImage" class="card-img-top">
+ -->
+                <h5 class="card-title" id = "Question"></h5>
 
-              <h5 class="card-title" id = "Question"></h5>
+                <div class = "row">
+                  <div class="card-text col" id="A"></div>
+                  <div class="card-text col" id="B"></div>
+                </div>
 
-              <div class = "row">
-                <div class="card-text col" id="A"></div>
-                <div class="card-text col" id="B"></div>
+                <div class = "row">
+                    <div class="card-text col" id="C"></div>
+                    <div class="card-text col" id="D"></div>
+                </div>
+
+                <div class = "row align">
+                  <div class = "col" id = "BG"><!-- Where Radio Buttons are appended --></div>
+                </div>
+
+                <div class = "row align">
+                    <div class = "col"></div>
+                    <div class = "col"></div>
+                    <div class = "col" id = "Sub"><!-- Where Submit Button is appended --></div>
+                    <div class = "col"></div>
+                    <div class = "col"></div>          
+                </div>
+
               </div>
-
-              <div class = "row">
-                  <div class="card-text col" id="C"></div>
-                  <div class="card-text col" id="D"></div>
-              </div>
-
-              <div class = "row">
-                <div class = "col"></div>
-                <div class = "col" id = "BG"><!-- Where Radio Buttons are appended --></div>
-                <div class = "col"></div>
-                <div class = "col"></div>
-              </div>
-              <div class = "row">
-                  <div class = "col"></div>
-                  <div class = "col" id = "Sub"><!-- Where Submit Button is appended --></div>
-                  <div class = "col"></div>
-                  <div class = "col"></div>          
-              </div>
-
-            </div>
           </div>
+        </div>
+        <div class = 'col-md-4'>
+            <div class="card opacity" style="width: 18rem;">
+                <div class="card-body">
+                  <h2 class="card-title align">Timer</h5>
+                  <h5 class="card-title align" id="Timer"></h5>
+                </div>
+              </div>
+        </div>
+      </div>
 
     </div>
 
